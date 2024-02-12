@@ -15,14 +15,9 @@ echo "$BACKEND" | tee -a /root/debug.log
 if [ ! -f /root/hasbooted2 ]
 then 
     echo "booting" | tee -a /root/debug.log
-    sudo apt install python3.10-venv
     mkdir /home/workspace
     cd /home/workspace
     git clone https://github.com/r3sist-uniq/vast-pyworker.git 
-    
-    python3 -m venv /home/workspace/worker-env
-    source /home/workspace/worker-env/bin/activate
-
     pip install requests
     pip install psutil
     pip install flask
@@ -34,12 +29,6 @@ then
     touch /root/hasbooted2
 fi
 
-if [ "$VIRTUAL_ENV" != "/home/workspace/worker-env" ]
-then
-    source /home/workspace/worker-env/bin/activate
-    echo "environment activated" | tee -a /root/debug.log
-fi
-echo "venv: $VIRTUAL_ENV" | tee -a /root/debug.log
 
 cd /home/workspace/vast-pyworker
 export SERVER_DIR="/home/workspace/vast-pyworker"
