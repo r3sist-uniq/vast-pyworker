@@ -33,7 +33,7 @@ class Backend(GenericBackend):
     
 ######################################### FLASK HANDLER METHODS ###############################################################
         
-    def generate_3d_model_handler(self, request):
+def generate_3d_model_handler(self, request):
         try:
             # model_dict could be wrong here (sd example)
             auth_dict, model_dict = self.format_request(request.json)
@@ -50,8 +50,8 @@ class Backend(GenericBackend):
             print(f"Error processing 3D model generation request: {e}")
             abort(500, description="Internal server error")
 
-    flask_dict = {
+flask_dict = {
         "POST": {
             "/generate_3d_model": generate_3d_model_handler,
         }
-    }
+}
